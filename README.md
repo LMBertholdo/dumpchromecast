@@ -1,6 +1,3 @@
 # ChromeCast dump
 
-Pcap of chromecast trying to reach google resolver ipv4/ipv6 before reentering in 
-DHCP provided resolver
-4s to reenter asking for clients1.google.com (38s(google)-42s(dhcp)) when google resolver is blocked and keeps retrying from time to time.
-in 38s try first google resolver and in 42s try dhcp provided resolver. It keeps trying google resolver from time to time (~25s?)
+When Chromecast is unable to access Google's DNS resolver, it attempts to switch to the DHCP-provided DNS resolver. Specifically, in second 38 into the process, Chromecast tries to use Google's DNS resolver for IPv4/IPv6. If it finds that Google's resolver is blocked, it then tries to use the DHCP-provided DNS resolver 2-4 seconds later, at the 42-second mark. It continues to retry accessing Google's DNS resolver intermittently, roughly every 25 seconds, while also using the DHCP resolver. This behavior is captured in the PCAPs (Packet Capture) files. One file is the normal use, the second is denying access to google resolver (8.8.8.8 and 2001:4860:4860::8888).
